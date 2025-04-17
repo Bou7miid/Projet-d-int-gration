@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter une Recette</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea,
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    input[type="submit"] {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ajouter une Recette</h1>
+  <form action="AjouterRecette.php" method="post">
+    <label for="nom">Nom de la recette :</label>
+    <input type="text" id="nom" name="nom" required>
+
+    <label for="ingredients">Ingrédients :</label>
+    <textarea id="ingredients" name="ingredients" rows="5" required></textarea>
+
+    <label for="etapes">Étapes de préparation :</label>
+    <textarea id="etapes" name="etapes" rows="6" required></textarea>
+
+    <label for="temps">Temps de préparation (en minutes) :</label>
+    <input type="number" id="temps" name="temps" required>
+
+    <label for="image">Image de la recette :</label>
+    <input type="file" id="image" name="image" >
+
+    <input type="submit" value="Ajouter la recette">
+  </form>
+  
+  <script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.getElementById('preview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+</body>
+</html>
