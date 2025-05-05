@@ -47,7 +47,7 @@ h2 {
     color: #888;
 }
 .form-group .input-icon input {
-    padding-left: 40px; /* Espace pour l'icône */
+    padding-left: 40px; 
 }
 .btn-primary {
     width: 100%;

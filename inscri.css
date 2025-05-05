@@ -1,0 +1,67 @@
+
+body {
+    background: url('https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+
+.card-title {
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+.btn-primary {
+    background-color: #ff6b35;
+    border-color: #ff6b35;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e65c2f;
+    border-color: #e65c2f;
+}
+
+
+input.form-control {
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+}
+
+
+a {
+    color: #ff6b35;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.invalid-feedback {
+    font-size: 0.85rem;
+}

@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="layoutPage.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand">
+      <img src="img/client.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top rounded-circle">
+      <?= $_SESSION['nom']." ". $_SESSION['prenom'] ?>
+    </a>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+
+        <li class="nav-item">
+          <?php if (session_status() != PHP_SESSION_NONE && array_key_exists('iduser', $_SESSION)): ?>
+            <?php if ($_SESSION['email'] === 'admin@gmail.com'): ?>
+              <a class="nav-link" href="AjouterRecette.phtml">
+                <i class="bi bi-database-fill-add"></i> Ajouter Recette
+              </a>
+            <?php else: ?>
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                <i class="bi bi-database-fill-add"></i> Ajouter Recette
+              </a>
+            <?php endif; ?>
+          <?php endif; ?>
+        </li>
+
+
+        <li class="nav-item">
+          <?php if (session_status() != PHP_SESSION_NONE && array_key_exists('iduser', $_SESSION)): ?>
+            <a class="nav-link text-danger" href="Deconnexion.php">
+              <i class="bi bi-box-arrow-left"></i> Déconnexion
+            </a>
+          <?php endif; ?>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="affichage">
+        <?php include $template . ".phtml" ?>
+</div>

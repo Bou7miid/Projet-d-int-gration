@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../IMG/back4.jpg');
+
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.form-control {
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(4, 48, 226, 0.179);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 5px rgba(4, 48, 226, 0.786);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg,#728deea0, #728dee76, #e8e5b8);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(135deg,#728deee4, #728dee, #eee79d);
+}
+
+.social {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.social div {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 12px;
+    width: 45%;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.social div:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.social i {
+    margin-right: 8px;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #373ddfb9;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a:hover {
+    color:  #373cdf;
+}
+
+.alert-danger {
+    color: #fff;
+    background-color: #dc3545;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+}

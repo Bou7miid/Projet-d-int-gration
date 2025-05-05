@@ -1,61 +1,48 @@
 <?php
 session_start();
-require 'Connexion.php';
+require 'bdConnect.php';
 
-$message = "";
+$email='';
+$password='';
+$errors=[];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['Email'];
-    $password = $_POST['Password'];
-
-    $req = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $req->execute([$email]);
-    $user = $req->fetch();
-
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['nom'] = $user['nom'];
-        $_SESSION['prenom'] = $user['prenom'];
-        header("Location: .php");
-        exit;
-    } else {
-        $message = "<div class='alert alert-danger'>Email ou mot de passe incorrect.</div>";
+if (isset($_POST['submit'])) {
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = htmlspecialchars(trim($_POST['password']));
+   
+    if (empty($email)) {
+        $errors['email'] = 'Veuillez entrer votre email.';
     }
+    if (empty($password)) {
+        $errors['password'] = 'Veuillez entrer votre mot de passe.';
+    }
+    if (empty($errors)) {
+        $res = $base->prepare("SELECT * FROM users WHERE email = :email");
+        $res->execute(["email" => $email]);
+        $user = $res->fetch();
+
+        if ($user) {
+            if ($password==$user['password']){
+
+                $_SESSION['nom'] = $user['nom'];
+                $_SESSION['prenom'] = $user['prenom'];
+                $_SESSION['iduser'] = $user['id'];
+                $_SESSION['email'] = $user['email'];
+
+                
+                if ($user['email'] == "admin@gmail.com") {
+                    header("Location: recettes.php");
+                } 
+                else {
+                    header("Location: recettesV.php");
+                }
+            }
+        } else {
+            $errors['global'] = "Cet email n'existe pas.";
+        }
+    }
+
 }
+$template="Login";
+include "Connexion.phtml";
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS.css">
-
-</head>
-<body>
-    <div class="form-container">
-        <h2>Connexion</h2>
-        <?php echo $message;?>
-        <form method="post">
-            <div class="form-group">
-                <div class="input-icon">
-                    <i class="fas fa-envelope"></i>
-                    <input type="text" name="Email" placeholder="Saisissez votre email" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-icon">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" name="Password" placeholder="Saisissez votre mot de passe" required>
-                </div>
-            </div>
-            <button type="submit" class="btn-primary">Se connecter</button>
-            <div>
-                Vous n'avez pas de compte ? <a href="SignUp.php">Inscrivez-vous</a>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
