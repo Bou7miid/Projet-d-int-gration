@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="recettesV.php" class="btn btn-secondary">⬅ Retour</a>
+    <form class="d-flex" method="GET" action="recherche.php">
+      <input class="form-control me-2" type="search" name="search" placeholder="Rechercher une recette..." value="<?= htmlspecialchars($search ?? '') ?>">
+      <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Rechercher</button>
+    </form>
+  </div>
+
+  <?php if (!empty($recettes)): ?>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <?php foreach ($recettes as $recette): ?>
+        <div class="col">
+          <div class="card h-100">
+            <?php if (!empty($recette['image'])): ?>
+              <img src="<?= htmlspecialchars($recette['image']) ?>" class="card-img-top" alt="Image de la recette">
+            <?php endif; ?>
+            <div class="card-body">
+              <h5 class="card-title"><?= htmlspecialchars($recette['nom']) ?></h5>
+              <p class="card-text"><strong>Ingrédients:</strong><br><?= nl2br(htmlspecialchars($recette['ingredients'])) ?></p>
+              <p class="card-text"><strong>Étapes:</strong><br><?= nl2br(htmlspecialchars($recette['etapes'])) ?></p>
+              <p class="card-text"><strong>Temps:</strong> <?= (int)$recette['temps_preparation'] ?> min</p>
+            </div>
+            <div class="card-footer text-end">
+              <a href="modifier1.php?id=<?= $recette['id'] ?>" class="btn btn-sm btn-warning">Modifier</a>
+              <a href="SupprimerRecette.php?id=<?= $recette['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Confirmer la suppression ?')">Supprimer</a>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php else: ?>
+    <div class="alert alert-info text-center">Aucune recette trouvée.</div>
+  <?php endif; ?>
+</div>
